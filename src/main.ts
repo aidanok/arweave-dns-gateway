@@ -1,6 +1,5 @@
 import { resolveTxt } from "dns"; 
 import { promisify } from "util";
-import { createProxyMiddleware } from "http-proxy-middleware";
 import LRU from "lru-cache";
 import ax from 'axios';
 
