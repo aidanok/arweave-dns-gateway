@@ -3,12 +3,14 @@
 // @ts-ignore
 import greenlock from "greenlock-express";
 
+import * as path from "path";
+
 import { app } from './app';
 
 greenlock
 .init({
-    packageRoot: __dirname + "/..",
-    configDir: __dirname + "../greenlock.d",
+    packageRoot: path.join(__dirname, '..' ),
+    configDir: path.join(__dirname, '..', 'greenlock.d'),
     maintainerEmail: "admin@blockbin.xyz",
     cluster: false
 })
