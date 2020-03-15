@@ -22,6 +22,11 @@ app.all('*', async (req, res, next) => {
   
   try {
     
+    if (req.hostname.toLowerCase().endsWith('blockbin.xyz')) {
+      apiApp(req, res, next);
+      return;
+    }
+
     console.log(`Trying to route ${req.hostname}..`);
     
     const result = await dnsLookupTx(req.hostname); 
