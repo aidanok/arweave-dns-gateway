@@ -24,8 +24,9 @@ curl -X POST -H "Content-Type: text/plain" --data "mycooldomain.com" https://api
 
 ### Setup DNS Records
 
-CNAME for `mycooldomain.com` pointing to `gw.blockbin.xyz` or `api.blockbin.xyz`
-TXT for `arweavetx.mycooldomain.com` set the the TX ID
+1. Set CNAME record for `mycooldomain.com` pointing to `gw.blockbin.xyz` or `api.blockbin.xyz`
+
+2. Set TXT record for `arweavetx.mycooldomain.com` set the the TX ID
 
 ### Go!
 
