@@ -1,11 +1,11 @@
 import { resolveTxt } from "dns"; 
 import { promisify } from "util";
 import LRU from "lru-cache";
-import ax from 'axios';
 import { getRedirectedUrl } from "../upstream/upstream";
 
 const resolveTxtRecords = promisify(resolveTxt);
 
+const CACHE_TTL_MINUTES = 20;
 
 export interface ResolvedTx {
   tx: string
@@ -14,6 +14,7 @@ export interface ResolvedTx {
 
 const cache = new LRU<string, ResolvedTx>({
   max: 200,
+  maxAge: 1000 * 60 * CACHE_TTL_MINUTES,
   dispose: (key: string, target: ResolvedTx) => {
     console.log(`Removing ${key} from cache`);
   }
