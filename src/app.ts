@@ -4,8 +4,8 @@ import nocache from "nocache";
 import evh from "express-vhost";
 
 import { icannApi } from './icann/icann-api';
-import { subdomainApi, subdomainProxy } from "./subdomain/subdomain";
 import { icannProxy } from "./icann/icann-proxy";
+import { subdomainApi, subdomainProxy } from "./subdomain/subdomain";
 
 const app = express();
 
