@@ -2,6 +2,7 @@ import express from 'express';
 import { spawn } from 'child_process';
 import bodyParser from 'body-parser';
 
+import { cache } from './main';
 
 const validDomainName = /^(((?!-))(xn--|_{1,1})?[a-z0-9-]{0,61}[a-z0-9]{1,1}\.)*(xn--)?([a-z0-9][a-z0-9\-]{0,60}|[a-z0-9-]{1,30}\.[a-z]{2,})$/
 
@@ -44,6 +45,27 @@ app.post('/v0/add_domain', async (req, res) => {
   }
 })
 
+app.post('/v0/invalidate_domain', async (req, res) => {
+  try {
+    let domain = req.body;
+    if (typeof domain !== 'string') {
+      res.status(400).send('Bad Request');
+      return;
+    }
+    domain = domain.toLowerCase();
+    if (!validDomainName.test(domain)) {
+      res.status(400).send(`Not a valid domain name\n`);
+      return; 
+    }
+
+    cache.del(domain)
+  }
+
+  catch (e) {
+    console.error(e)
+    res.status(500).send('Internal Server Error');
+  }
+})
 
 app.get('/v0/convert_tx', async (req, res) => {
 

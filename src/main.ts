@@ -12,7 +12,7 @@ export interface ResolvedTx {
   location: string
 }
 
-const cache = new LRU<string, ResolvedTx>({
+export const cache = new LRU<string, ResolvedTx>({
   max: 200,
   dispose: (key: string, target: ResolvedTx) => {
     console.log(`Removing ${key} from cache`);
@@ -67,5 +67,3 @@ export async function dnsLookupTx(hostname: string): Promise<ResolvedTx | string
 
   return resolved;
 }
-
-
