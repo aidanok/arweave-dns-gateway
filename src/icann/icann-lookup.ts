@@ -2,10 +2,10 @@ import { resolveTxt } from "dns";
 import { promisify } from "util";
 import LRU from "lru-cache";
 import ax from 'axios';
+import { getRedirectedUrl } from "../upstream/upstream";
 
 const resolveTxtRecords = promisify(resolveTxt);
 
-const GATEWAY_URL = `https://arweave.net`;
 
 export interface ResolvedTx {
   tx: string
@@ -18,18 +18,6 @@ const cache = new LRU<string, ResolvedTx>({
     console.log(`Removing ${key} from cache`);
   }
 })
-
-/**
- * Returns the redirected location or a http error code.
- * @param tx 
- */
-async function getRedirectedUrl(tx: string) {
-  const resp = await ax.get(`${GATEWAY_URL}/${tx}`, { maxRedirects: 0, validateStatus: () => true })
-  if (resp.status !== 301) {
-    return resp.status;
-  }
-  return resp.headers.location as string;
-}
 
 /**
  * Returns either the resolved info, or, a string error, or a http error code 

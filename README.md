@@ -26,10 +26,10 @@ curl -X POST -H "Content-Type: text/plain" --data "mycooldomain.com" https://api
 
 1. Set CNAME record for `mycooldomain.com` pointing to `gw.blockbin.xyz` or `api.blockbin.xyz`
 
-2. Set TXT record for `arweavetx.mycooldomain.com` set the the TX ID
+2. Set TXT record for `arweavetx.mycooldomain.com` to a TX ID
 
 ### Go!
 
-Navigate to `https://mycooldomain.com`, the first navigation may take some time as 
-as an SSL cert is generated. The TX you set will be served under the 
+Navigate to `https://mycooldomain.com`, the first navigation may take some time as
+as an SSL cert is generated. The TX you set will be served under the
 secure origin of `https://mycooldomain.com`

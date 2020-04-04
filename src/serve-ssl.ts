@@ -12,7 +12,8 @@ greenlock
     packageRoot: path.join(__dirname, '..' ),
     configDir: path.join(__dirname, '..', 'greenlock.d'),
     maintainerEmail: "admin@blockbin.xyz",
-    cluster: false
+    cluster: false,
+    debug: true,
 })
 // Serves on 80 and 443
 // Get's SSL certificates magically!

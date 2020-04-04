@@ -5,9 +5,9 @@ import bodyParser from 'body-parser';
 
 const validDomainName = /^(((?!-))(xn--|_{1,1})?[a-z0-9-]{0,61}[a-z0-9]{1,1}\.)*(xn--)?([a-z0-9][a-z0-9\-]{0,60}|[a-z0-9-]{1,30}\.[a-z]{2,})$/
 
-const app = express(); 
+const icannApi = express.Router(); 
 
-app.use(bodyParser.text());
+icannApi.use(bodyParser.text());
 
 function addDomainName(domain: string) {
   return new Promise((res, rej) => {
@@ -22,7 +22,7 @@ function addDomainName(domain: string) {
   })
 }
 
-app.post('/v0/add_domain', async (req, res) => {
+icannApi.post('/v0/add_domain', async (req, res) => {
   try {
     let domain = req.body;
     if (typeof domain !== 'string') {
@@ -36,7 +36,7 @@ app.post('/v0/add_domain', async (req, res) => {
     }
     await addDomainName(domain);
     res.status(200).send('Domain added. Navigating to the domain the first time can take some time while an SSL cert is issued.\n');
-  }
+  } 
 
   catch (e) {
     console.error(e);
@@ -45,8 +45,4 @@ app.post('/v0/add_domain', async (req, res) => {
 })
 
 
-app.get('/v0/convert_tx', async (req, res) => {
-
-})
-
-export { app as apiApp }
+export { icannApi }
