@@ -15,10 +15,12 @@ app.use(evh.vhost(app.enabled("trust proxy")));
 // no cache everywhere
 app.use(nocache());
 
-evh.register("api.blockbin.xyz", icannApi);
+// weaved.page subdomain API and Proxy.
 evh.register('api.weaved.page', subdomainApi);
 evh.register('*.weaved.page', subdomainProxy);
 
+// ICANN DNS API and Proxy
+evh.register("api.blockbin.xyz", icannApi);
 app.all('*', icannProxy);
 
 export { app };
