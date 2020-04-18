@@ -2,7 +2,7 @@
    "name": "greenlock-manager",
    "version": "1.0.0",
    "description": "",
-   "main": "index.ts",
+   "main": "index.js",
    "dependencies": {
       "mongodb": "^3.5.6",
       "mysql": "^2.14.1",
@@ -17,8 +17,10 @@
       "typescript": "^3.3.3333"
    },
    "scripts": {
+      "build": "tsc src/entity/Site.ts --module commonjs  --experimentalDecorators --emitDecoratorMetadata",
+      "prepare": "npm run build",
       "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "ts-node index.ts"
+      "start": "node index.js"
    },
    "author": "",
    "license": "ISC"
