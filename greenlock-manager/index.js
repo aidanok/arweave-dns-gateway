@@ -29,7 +29,7 @@ Manager.create = function() {
     manager = {
         get: async function({servername}) {
             let connection = await createConnection(connectionOptions);
-            const site = await connection.mongoManager.findOne(Site.Site, {subject: servername});
+            const site = await connection.manager.findOne(Site.Site, {subject: servername});
             await connection.close();
 
             return site;
@@ -43,7 +43,7 @@ Manager.create = function() {
                 site.renewAt = opts.renewAt;
                 site.deletedAt = opts.deletedAt;
                 
-                await connection.mongoManager.updateOne(Site.Site, {subject: opts.subject}, {$set: site}, { upsert: true });
+                await connection.manager.updateOne(Site.Site, {subject: opts.subject}, {$set: site}, { upsert: true });
                 await connection.close();
 
                 return null;
@@ -53,7 +53,7 @@ Manager.create = function() {
         find: async function(opts) {
             let connection = await createConnection(connectionOptions);
             let sites = null;
-            let altname = null
+            let altname = null;
             
             if(opts) {
                 if(opts.altnames) {
@@ -61,7 +61,7 @@ Manager.create = function() {
                 }
             }
 
-            sites = await connection.mongoManager.find(Site.Site, {
+            sites = await connection.manager.find(Site.Site, {
 
 
                 where: {
