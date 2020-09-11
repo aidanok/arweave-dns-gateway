@@ -24,7 +24,7 @@
         "express": "^4.17.1",
         "express-vhost": "^0.2.0",
         "greenlock-express": "^4.0.3",
-        "http-proxy": "^1.18.0",
+        "http-proxy": "^1.18.1",
         "lru-cache": "^5.1.1",
         "multiaddr": "^7.4.2",
         "multibase": "^0.7.0",
