@@ -18,7 +18,7 @@
         "@types/multicodec": "^1.0.0",
         "acme-dns-01-digitalocean": "^3.0.1",
         "acme-dns-01-namecheap": "^3.0.1",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "bip39-codec": "^1.1.0",
         "cid": "^0.1.0",
         "express": "^4.17.1",
